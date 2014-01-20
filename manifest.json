@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Study Cake",
-  "version": "0.1",
+  "version": "0.3",
   "description": "Simple App that teaches you programming",
   "browser_action": {
     "default_icon": "icon16.png"
