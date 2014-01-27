@@ -9,19 +9,78 @@
   </head>
 
   <body>
-    
-    <script type="text/x-handlebars">
-      <h2>Study Cake</h2>
-
+    <script type='text/x-handlebars'>
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Studycake</a>
+        </div>
+        
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li>{{#link-to 'currency'}}Currency{{/link-to}}</li>
+            <li>{{#link-to 'stocks'}}Stocks{{/link-to}}</li>
+            <li>{{#link-to 'activity'}}Activity{{/link-to}}</li>
+            <li>{{#link-to 'about'}}About{{/link-to}} </li>
+          </ul>
+        </div>
+        
+      </div>
       {{outlet}}
     </script>
 
-    <script type="text/x-handlebars" id="index">
+    <script type="text/x-handlebars" id="about">
+      <div class="about">
+        Studycake uses Ember.js...
+      </div>
+    </script>
+
+    <script type='text/x-handlebars' id='currency'>
+      <table class='table'>
+        <thead>
+          Currencies
+        </thead>
+        {{#each}}
+          <tr>
+            <td>{{from}}</td>
+          </tr>
+        {{/each}}      
+      </table>
+    </script>
+
+
+  <script type='text/x-handlebars' id='activity'>
+      {{title}}
       <ul>
-      {{#each item in model}}
-      <li>{{item}}</li>
+      {{#each items}}
+        <li>{{{description}}}</li>
       {{/each}}
       </ul>
+    </script>
+    
+    <script type='text/x-handlebars' id='stocks'>
+      <table class='table'>
+        <thead>
+          Stocks
+        </thead>
+        {{#each}}
+          <tr>
+            <td>
+            {{#link-to 'stock' this}}
+              {{quote}}
+            {{/link-to}}
+            </td>
+          </tr>
+        {{/each}}      
+      </table>
+      
+      {{outlet}}      
+    
+    </script>
+    
+    <script type='text/x-handlebars' id='stock'>
+      <h1>
+      {{description}}
+      </h1>
     </script>
 
     <script src="js/libs/jquery-1.10.2.js"></script>
