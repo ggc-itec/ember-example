@@ -9,7 +9,9 @@ App.Router.map(function() {
     this.resource('stock', { path: ':stock_id' });    
   });
   this.resource('activity');
-  
+  this.resource('favorites', function() {
+    this.resource('favorite', { path: ':favorite' });
+  });
 });
 
 App.CurrencyRoute = Ember.Route.extend({
@@ -32,6 +34,14 @@ App.StockRoute = Ember.Route.extend({
 });
 
 App.ActivityRoute = Ember.Route.extend({
+  model: function() {
+    return $.getJSON('http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?&format=json').then(function(data) {
+      return data;
+    });     
+  }
+});
+
+App.FavoritesRoute = Ember.Route.extend({
   model: function() {
     return $.getJSON('http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?&format=json').then(function(data) {
       return data;
